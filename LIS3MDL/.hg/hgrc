@@ -1,7 +1,7 @@
 # example repository config (see 'hg help config' for more info)
 [paths]
-mbed-studio-cache = /home/studio/mbed-studio-data/library-cache/developer.mbed.org/teams/ST/code/LIS3MDL
-default = https://developer.mbed.org/teams/ST/code/LIS3MDL/
+mbed-studio-cache = /home/studio/mbed-studio-data/library-cache/os.mbed.com/teams/ST/code/LIS3MDL
+default = http://os.mbed.com/teams/ST/code/LIS3MDL/
 
 # path aliases to other clones of this repo in URLs or filesystem paths
 # (see 'hg help config.paths' for more info)

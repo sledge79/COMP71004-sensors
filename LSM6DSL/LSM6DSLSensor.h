@@ -282,15 +282,14 @@ class LSM6DSLSensor : public MotionSensor, public GyroSensor
      */
     uint8_t io_write(uint8_t* pBuffer, uint8_t RegisterAddr, uint16_t NumByteToWrite)
     {
-        int data;   
         if (_dev_spi) { 
             _dev_spi->lock();
             _cs_pin = 0;
-            data = _dev_spi->write(RegisterAddr);                    
+            _dev_spi->write(RegisterAddr);                    
             _dev_spi->write((char *)pBuffer, (int) NumByteToWrite, NULL, 0);                     
             _cs_pin = 1;                    
             _dev_spi->unlock();
-            return data;                    
+            return 0;                    
         }        
         if (_dev_i2c) return (uint8_t) _dev_i2c->i2c_write(pBuffer, _address, RegisterAddr, NumByteToWrite);    
         return 1;
@@ -305,13 +304,13 @@ class LSM6DSLSensor : public MotionSensor, public GyroSensor
     /* Helper classes. */
     DevI2C *_dev_i2c;
     SPI    *_dev_spi;
-    SPI_type_t _spi_type;
-    
+
     /* Configuration */
     uint8_t _address;
     DigitalOut  _cs_pin;        
     InterruptIn _int1_irq;
     InterruptIn _int2_irq;
+    SPI_type_t _spi_type;
     
     uint8_t _x_is_enabled;
     float _x_last_odr;

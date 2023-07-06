@@ -124,11 +124,11 @@ class LSM303AGRAccSensor : public MotionSensor
         if (_dev_spi) { 
             _dev_spi->lock();
             _cs_pin = 0;
-            int data = _dev_spi->write(RegisterAddr);                    
+            _dev_spi->write(RegisterAddr);                    
             _dev_spi->write((char *)pBuffer, (int) NumByteToWrite, NULL, 0);                     
             _cs_pin = 1;                    
             _dev_spi->unlock();
-            return data;                    
+            return 0;                    
         }                
         if (_dev_i2c) return (uint8_t)_dev_i2c->i2c_write(pBuffer, _address, RegisterAddr, NumByteToWrite);
         return 1;
